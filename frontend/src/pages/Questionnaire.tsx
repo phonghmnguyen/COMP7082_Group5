@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -8,6 +9,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { Dumbbell } from 'lucide-react'
+import { useToast } from "@/hooks/use-toast"
+import { Spinner } from '@/components/ui/spinner'
+
+
 
 type WorkoutPreferences = {
     frequency: string
@@ -30,12 +35,62 @@ export default function Questionnaire() {
         workoutDuration: 30
     })
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log('Submitting preferences:', preferences)
-        // Add your API call here
-    }
+    const [isLoading, setIsLoading] = useState(false)
+    const { toast } = useToast()
+    const navigate = useNavigate();
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setIsLoading(true)
+
+        console.log(preferences)
+        try {
+            const response = await fetch('http://192.168.1.94:8000/api/routines', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    frequency: preferences.frequency,
+                    fitness_goal: preferences.fitnessGoal,
+                    workout_location: preferences.workoutLocation,
+                    space_constraint: preferences.spaceConstraint,
+                    has_equipment: preferences.hasEquipment,
+                    experience_level: preferences.experienceLevel,
+                    workout_duration: preferences.workoutDuration,
+                }),
+            })
+
+
+
+            const data = await response.json()
+            await new Promise((resolve) => setTimeout(resolve, 4000));
+            console.log(data)
+
+
+
+            toast({
+                title: "Success 🚀",
+                description: "Your workout routine has been created!",
+            })
+
+            navigate("/routine")
+
+
+
+
+
+        } catch (error) {
+            console.error('Error creating routine:', error)
+            toast({
+                title: "Error",
+                description: "Failed to create workout routine. Please try again.",
+                variant: "destructive",
+            })
+        } finally {
+            setIsLoading(false)
+        }
+    }
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
             <Card className="max-w-4xl mx-auto w-full">
@@ -94,15 +149,15 @@ export default function Questionnaire() {
                                 onValueChange={(value) => setPreferences({ ...preferences, fitnessGoal: value })}
                             >
                                 <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="stayingFit" id="stayingFit" />
+                                    <RadioGroupItem value="staying fit" id="stayingFit" />
                                     <Label htmlFor="stayingFit">Staying Fit</Label>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="muscleGain" id="muscleGain" />
+                                    <RadioGroupItem value="muscle gain" id="muscleGain" />
                                     <Label htmlFor="muscleGain">Muscle Gain</Label>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="weightLoss" id="weightLoss" />
+                                    <RadioGroupItem value="weight loss" id="weightLoss" />
                                     <Label htmlFor="weightLoss">Weight Loss</Label>
                                 </div>
                                 <div className="flex items-center space-x-2">
@@ -167,8 +222,16 @@ export default function Questionnaire() {
                             </div>
                         </div>
                     </CardContent>
-                    <CardFooter>
-                        <Button type="submit" className="w-full">Submit Preferences</Button>
+                    <CardFooter className="flex justify-center items-center p-4">
+                        {isLoading ? (
+                            <Spinner size="small" className="" >
+                                Personalizing Your Workout With ❤️
+                            </Spinner>
+                        ) : (
+                            <Button type="submit" className="w-full">
+                                Submit Preferences
+                            </Button>)}
+
                     </CardFooter>
                 </form>
             </Card>

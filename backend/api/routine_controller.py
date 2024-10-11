@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
 from api.http_response import HTTPResponse
-from infra.repositories import RoutineRepository
-from infra.models import Routine
+from domain.repositories import RoutineRepository
+from domain.models import Routine, Questionnaire
 
 
 class RoutineController:
@@ -27,7 +27,7 @@ class RoutineController:
 
     def register_routes(self):
         """Register all routes for routine operations with the FastAPI router."""
-        self.router.post("/routines")(self.create_routine)
+        self.router.post("/routines")(self.create_routine_from_questionnaire)
         self.router.get("/routines")(self.list_routines)
         self.router.get("/routines/{routine_id}")(self.get_routine)
         self.router.put("/routines/{routine_id}")(self.update_routine)
@@ -47,6 +47,18 @@ class RoutineController:
         return HTTPResponse(201, "Routine is successfully created", {
             "id": routine_id
         })
+
+    async def create_routine_from_questionnaire(self, questionnaire: Questionnaire):
+        """
+        Create a new workout routine from a questionnaire
+
+        Args:
+            questionnaire (Questionnaire): The questionnaire that will be used to create the new routine.
+
+        Returns:
+            HTTPResponse
+        """
+        print("HELLO")
 
     async def get_routine(self, routine_id: str):
         """

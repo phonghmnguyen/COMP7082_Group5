@@ -1,42 +1,44 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Brain, Dumbbell, Smartphone } from "lucide-react"
+import { Brain, Dumbbell, Smartphone, Target } from "lucide-react"
 import LoginButton from "@/components/LoginButton"
 
 export default function NeuroFitLanding() {
     return (
         <div className="flex flex-col min-h-screen">
-            <header className="px-4 lg:px-6 h-14 flex items-center justify-between max-w-7xl mx-auto w-full">
-                <a className="flex items-center justify-center" href="/">
-                    <Brain className="h-6 w-6" />
-                    <span className="ml-2 text-2xl font-bold">NeuroFit</span>
-                </a>
-                <nav className="flex gap-4 sm:gap-6">
-                    <a className="text-sm font-medium hover:underline underline-offset-4" href="#features">
-                        Features
+            <header className="fixed top-0 left-0 right-0 w-full bg-white/70 backdrop-blur-md shadow-md z-50 transition-colors duration-300">
+                <div className="px-4 lg:px-6 h-14 flex items-center justify-between max-w-7xl mx-auto">
+                    <a className="flex items-center justify-center" href="/">
+                        <Target className="h-6 w-6" />
+                        <span className="ml-2 text-2xl font-bold">NeuroFit</span>
                     </a>
-                    <a className="text-sm font-medium hover:underline underline-offset-4" href="#testimonies">
-                        Testimonies
-                    </a>
-                    <a className="text-sm font-medium hover:underline underline-offset-4" href="#about">
-                        About
-                    </a>
-                    <a className="text-sm font-medium hover:underline underline-offset-4" href="#contact">
-                        Contact
-                    </a>
-                </nav>
+                    <nav className="flex gap-4 sm:gap-6">
+                        <a className="text-sm font-medium hover:underline underline-offset-4" href="#features">
+                            Features
+                        </a>
+                        <a className="text-sm font-medium hover:underline underline-offset-4" href="#testimonies">
+                            Testimonies
+                        </a>
+                        <a className="text-sm font-medium hover:underline underline-offset-4" href="#about">
+                            About
+                        </a>
+                        <a className="text-sm font-medium hover:underline underline-offset-4" href="#contact">
+                            Contact
+                        </a>
+                    </nav>
+                </div>
             </header>
             <main className="flex-1">
                 <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="flex flex-col items-center space-y-4 text-center">
                             <div className="space-y-2">
-                                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                                    Train Your Body. Sharpen Your Mind.
+                                <h1 className="text-3xl bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient font-bold bg-300% tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                                    Feedback. Adapt. Progress.
                                 </h1>
                                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                                    Neurofit combines cutting-edge neuroscience with personalized fitness routines to optimize your physical and mental performance.
+                                    Unlock your potential with tailored workouts and real-time feedback to transform your body.
                                 </p>
                             </div>
                             <div className="space-x-4">
@@ -53,9 +55,9 @@ export default function NeuroFitLanding() {
                             <Card>
                                 <CardContent className="flex flex-col items-center space-y-2 p-6">
                                     <Brain className="h-12 w-12 mb-2 text-primary" />
-                                    <h3 className="text-xl font-bold">Cognitive Training</h3>
+                                    <h3 className="text-xl font-bold">Video Feedback</h3>
                                     <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-                                        Enhance your mental acuity with brain-training exercises designed by neuroscientists.
+                                        Submit your workout videos and receive instant personalized feedback to optimize your performance.
                                     </p>
                                 </CardContent>
                             </Card>
@@ -71,9 +73,9 @@ export default function NeuroFitLanding() {
                             <Card>
                                 <CardContent className="flex flex-col items-center space-y-2 p-6">
                                     <Smartphone className="h-12 w-12 mb-2 text-primary" />
-                                    <h3 className="text-xl font-bold">Mobile Integration</h3>
+                                    <h3 className="text-xl font-bold">Progress Tracking</h3>
                                     <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-                                        Seamlessly track your progress and access your routines on-the-go.
+                                        Track your progress with insightful stats to keep you motivated and informed.
                                     </p>
                                 </CardContent>
                             </Card>
@@ -87,7 +89,7 @@ export default function NeuroFitLanding() {
                             <Card>
                                 <CardContent className="p-6">
                                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                                        "Neurofit has transformed my approach to fitness. I feel sharper and more energized than ever!"
+                                        "The video feedback feature has been a game-changer for my workouts. Instant insights help me improve!"
                                     </p>
                                     <p className="mt-2 font-semibold">- Alex K.</p>
                                 </CardContent>
@@ -95,7 +97,7 @@ export default function NeuroFitLanding() {
                             <Card>
                                 <CardContent className="p-6">
                                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                                        "The cognitive exercises have improved my focus at work. It's like a gym for my brain!"
+                                        "I love the adaptive workouts! They keep evolving with my progress, making every session feel fresh."
                                     </p>
                                     <p className="mt-2 font-semibold">- Sarah M.</p>
                                 </CardContent>
@@ -103,7 +105,7 @@ export default function NeuroFitLanding() {
                             <Card>
                                 <CardContent className="p-6">
                                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                                        "I love how Neurofit adapts to my progress. It keeps me challenged and motivated."
+                                        "The progress tracking feature keeps me accountable and motivated. I can see how far I’ve come!"
                                     </p>
                                     <p className="mt-2 font-semibold">- David L.</p>
                                 </CardContent>
