@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Brain, Dumbbell, Smartphone } from "lucide-react"
+import LoginButton from "@/components/LoginButton"
 
 export default function NeuroFitLanding() {
     return (
@@ -15,8 +16,8 @@ export default function NeuroFitLanding() {
                     <a className="text-sm font-medium hover:underline underline-offset-4" href="#features">
                         Features
                     </a>
-                    <a className="text-sm font-medium hover:underline underline-offset-4" href="#pricing">
-                        Pricing
+                    <a className="text-sm font-medium hover:underline underline-offset-4" href="#testimonies">
+                        Testimonies
                     </a>
                     <a className="text-sm font-medium hover:underline underline-offset-4" href="#about">
                         About
@@ -39,7 +40,7 @@ export default function NeuroFitLanding() {
                                 </p>
                             </div>
                             <div className="space-x-4">
-                                <Button>Log In</Button>
+                                <LoginButton />
                                 <Button variant="outline">Sign Up</Button>
                             </div>
                         </div>
@@ -79,7 +80,7 @@ export default function NeuroFitLanding() {
                         </div>
                     </div>
                 </section>
-                <section className="w-full py-12 md:py-24 lg:py-32">
+                <section id="testimonies" className="w-full py-12 md:py-24 lg:py-32">
                     <div className="container mx-auto px-4 md:px-6">
                         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">What Our Users Say</h2>
                         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
