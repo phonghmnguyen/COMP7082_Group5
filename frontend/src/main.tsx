@@ -8,7 +8,7 @@ createRoot(document.getElementById('root')!).render(
     domain="dev-jsmrqvab3vyr5osd.us.auth0.com"
     clientId="BQ7jPURr4cWx7U2D90FSn7MD5GldCD0e"
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: "http://localhost:5173/questionnaire"
     }}
   >
     <App />
